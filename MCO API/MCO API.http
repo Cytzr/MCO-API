@@ -1,0 +1,6 @@
+@MCO_API_HostAddress = http://localhost:5256
+
+GET {{MCO_API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
