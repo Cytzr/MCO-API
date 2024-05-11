@@ -1,14 +1,12 @@
 ﻿using MCO_API.Data;
 using MCO_API.Models.Database;
 using MCO_API.Models.Domain;
-using MCO_API.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace MCO_API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
     {
@@ -20,7 +18,7 @@ namespace MCO_API.Controllers
         }
 
         [HttpGet]
-        [Route("/GetAllUsers")]
+        [Route("/users/getAllUsers")]
         public async Task<List<Users>> GetAllUsers()
         {
             try 
@@ -55,7 +53,7 @@ namespace MCO_API.Controllers
         }
 
         [HttpGet]
-        [Route("/GetSampleUsers")]
+        [Route("/users/getSampleUsers")]
         public async Task<List<Users>> GetSampleUser()
         {
             try
@@ -67,8 +65,8 @@ namespace MCO_API.Controllers
                                         userDescription = a.userDescription,
                                         userPicture = a.userPicture,
                                         userPrice = a.userPrice,
-                                        //getgamebyid
                                     }).ToListAsync();
+                return result;
 
             }
             catch
@@ -78,7 +76,7 @@ namespace MCO_API.Controllers
         }
 
         [HttpGet]
-        [Route("/GetUserByID/{id:guid}")]
+        [Route("/users/getUserByID/{id:guid}")]
         public async Task<IActionResult> GetUserById([FromRoute] Guid id)
         {
             try
@@ -103,7 +101,7 @@ namespace MCO_API.Controllers
         }
 
         [HttpGet]
-        [Route("/GetUserByGame/{gameID:guid}")]
+        [Route("/users/getUserByGame/{gameID:guid}")]
         public async Task<List<Users>> GetUserByGame([FromRoute] Guid gameID)
         {
             var game = await (from a in _context.Games
@@ -124,23 +122,6 @@ namespace MCO_API.Controllers
                                     games = game,
                                 }).ToListAsync();
 
-            return result;
-        }
-
-        [HttpGet]
-        [Route("/GetUserComments/{userID:guid}")]
-        public async Task<List<CommentsDatabaseModel>> GetUserComments([FromRoute]Guid userID)
-        {
-            var result = await (from a in _context.Comments
-                                where a.commentedUser == userID && a.commentType == "User"
-                                select new CommentsDatabaseModel
-                                {
-                                    commenter = a.commenter,
-                                    commentContent = a.commentContent,
-                                    commentSender = a.commentSender,
-                                    commentRating = a.commentRating,
-                                    commentPicture = a.commentPicture,
-                                }).ToListAsync();
             return result;
         }
     }

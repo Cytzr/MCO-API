@@ -1,10 +1,12 @@
 ﻿using MCO_API.Data;
+using MCO_API.Models.Database;
+using MCO_API.Models.Domain;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace MCO_API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
     public class CoachesController : ControllerBase
     {
@@ -13,6 +15,14 @@ namespace MCO_API.Controllers
         public CoachesController(MCODbContext context)
         {
             _context = context;
+        }
+
+        [HttpGet]
+        [Route("/coaches/getAllCoaches")]
+        public async Task<List<CoachesDatabaseModel>> GetAllCoaches()
+        {
+            return await(from a in _context.Coaches
+                         select a).ToListAsync();
         }
     }
 }
