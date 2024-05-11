@@ -10,11 +10,11 @@ namespace MCO_API.Controllers
     [ApiController]
     public class WalletsController : ControllerBase
     {
+        private readonly MCODbContext _context;
 
-        //[HttpGet]
-        //public async Task<List<Wallets>> GetAllWallets()
-        //{
-        //    return await _context.Wallets.ToListAsync();
-        //}
+        public WalletsController(MCODbContext context)
+        {
+            _context = context;
+        }
     }
 }

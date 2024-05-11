@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MCO_API.Data;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MCO_API.Controllers
@@ -7,6 +8,11 @@ namespace MCO_API.Controllers
     [ApiController]
     public class CoachesController : ControllerBase
     {
-        
+        private readonly MCODbContext _context;
+
+        public CoachesController(MCODbContext context)
+        {
+            _context = context;
+        }
     }
 }

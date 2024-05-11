@@ -13,7 +13,6 @@ namespace MCO_API.Controllers
     public class UsersController : ControllerBase
     {
         private readonly MCODbContext _context;
-        private UserOrdersRepository _userOrdersRepository;
 
         public UsersController(MCODbContext context)
         {
@@ -107,6 +106,10 @@ namespace MCO_API.Controllers
         [Route("/GetUserByGame/{gameID:guid}")]
         public async Task<List<Users>> GetUserByGame([FromRoute] Guid gameID)
         {
+            var game = await (from a in _context.Games
+                              where a.gameID.Equals(gameID)
+                              select a).FirstOrDefaultAsync();
+
             var result = await (from a in _context.Users
                                 where a.userGameID == gameID
                                 select new Users
@@ -117,6 +120,8 @@ namespace MCO_API.Controllers
                                     userPicture = a.userPicture,
                                     userIsPlayer = a.userIsPlayer,
                                     userPrice = a.userPrice,
+                                    userGameID = game.gameID,
+                                    games = game,
                                 }).ToListAsync();
 
             return result;
@@ -138,60 +143,5 @@ namespace MCO_API.Controllers
                                 }).ToListAsync();
             return result;
         }
-
-        //[HttpPost]
-        //public async Task<IActionResult> AddNewUsers([FromBody] UsersDTO user)
-        //{
-        //    try
-        //    {
-        //        Users newUser = new Users()
-        //        {
-        //            userName = user.userName,
-        //            userPassword = user.userPassword,
-        //            userDescription = user.userDescription,
-        //            userPicture = user.userPicture,
-        //            userIsPlayer = user.userIsPlayer,
-        //            userPrice = user.userPrice,
-        //            userGameID = user.userGameID,
-        //        };
-        //        await _context.Users.AddAsync(newUser);
-        //        await _context.SaveChangesAsync();
-        //        return Ok(newUser);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return NotFound(ex.Message);
-        //    }
-        //}
-
-        //[HttpDelete]
-        //[Route("{id}")]
-        //public async Task<IActionResult> DeleteUser([FromRoute] Guid id)
-        //{
-        //    try
-        //    {
-        //        Users user = await _context.Users.FindAsync(id);
-        //        _context.Users.Remove(user);
-        //        await _context.SaveChangesAsync();
-        //        return Ok(user);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return NotFound(ex.Message);
-        //    }
-        //}
-
-        //[HttpPost]
-        //public async Task<IActionResult> UpdateUserPrice([FromBody] int price)
-        //{
-        //    Users existingUser = await _context.Users.FindAsync(update.userID);
-
-        //    if (existingUser == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    existingUser
-        //}
     }
 }
