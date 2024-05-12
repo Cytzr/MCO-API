@@ -8,7 +8,7 @@ namespace MCO_API.Models.Domain
 {
     public class Coaches
     {
-        public Guid? coachID;
+        public Guid? coachID { get; set; }
         public string? coachName { get; set; }
         public string? coachPassword { get; set; }
         public string? coachDescription { get; set; }

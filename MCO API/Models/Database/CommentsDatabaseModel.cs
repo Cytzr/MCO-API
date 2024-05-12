@@ -9,7 +9,6 @@ namespace MCO_API.Models.Database
         [Key]
         public Guid? commentID { get; set; }
         public Guid? commentedUser {  get; set; }
-        public string? commenter { get; set; }
         public string? commentContent { get; set; }
         public string? commentSender { get; set; }
         public int? commentRating { get; set; }

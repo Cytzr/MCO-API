@@ -28,6 +28,7 @@ namespace MCO_API.Controllers
                                    where a.customerID.Equals(id) && a.orderType.Equals("Playing")
                                    select new UserOrders
                                    {
+                                       orderID = a.orderID,
                                        customerID = a.customerID,
                                        sellerID = a.sellerID,
                                        orderType = a.orderType,
@@ -37,6 +38,7 @@ namespace MCO_API.Controllers
                                                 where b.userID.Equals(a.customerID)
                                                 select new UsersDatabaseModel
                                                 {
+                                                    userID = b.userID,
                                                     userName = b.userName,
                                                     userPicture = b.userPicture,
                                                 }).FirstOrDefault(),
@@ -44,6 +46,7 @@ namespace MCO_API.Controllers
                                                  where b.userID.Equals(a.sellerID)
                                                  select new UsersDatabaseModel
                                                  {
+                                                     userID=b.userID,
                                                      userName = b.userName,
                                                      userPicture = b.userPicture,
                                                  }).FirstOrDefault(),
@@ -51,9 +54,10 @@ namespace MCO_API.Controllers
                 list.AddRange(buyer);
 
                 var seller = await (from a in _context.UserOrders
-                                    where a.sellerID.Equals(id) && a.orderType.Equals("Coaching")
+                                    where a.sellerID.Equals(id) && a.orderType.Equals("Playing")
                                     select new UserOrders
                                     {
+                                        orderID = a.orderID,
                                         customerID = a.customerID,
                                         sellerID = a.sellerID,
                                         orderType = a.orderType,
@@ -63,20 +67,73 @@ namespace MCO_API.Controllers
                                                  where b.userID.Equals(a.customerID)
                                                  select new UsersDatabaseModel
                                                  {
+                                                     userID = b.userID,
                                                      userName = b.userName,
                                                      userPicture = b.userPicture,
+                                                     userPrice = b.userPrice,
                                                  }).FirstOrDefault(),
                                         seller = (from b in _context.Users
                                                   where b.userID.Equals(a.sellerID)
                                                   select new UsersDatabaseModel
                                                   {
+                                                      userID = b.userID,
                                                       userName = b.userName,
                                                       userPicture = b.userPicture,
+                                                      userPrice = b.userPrice,
                                                   }).FirstOrDefault(),
                                     }).ToListAsync();
                 list.AddRange(seller);
 
                 return list;
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+
+        [HttpPut]
+        [Route("/userOrders/updateStatus/{id:guid}")]
+        public async Task<IActionResult> UpdateStatus([FromRoute] Guid id, [FromBody] String status)
+        {
+            try
+            {
+                UserOrdersDatabaseModel result = await _context.UserOrders.FindAsync(id);
+                result.orderStatus = status;
+                return Ok();
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+
+        [HttpPost]
+        [Route("/userOrders/insertOrder")]
+        public async Task<IActionResult> InsertOrder([FromBody] UserOrdersDatabaseModel order)
+        {
+            try
+            {
+                var result = await _context.UserOrders.AddAsync(order);
+                await _context.SaveChangesAsync();
+                return Ok();
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+
+        [HttpDelete]
+        [Route("/userOrders/deleteOrder/{id:guid}")]
+        public async Task<IActionResult> DeleteOrder([FromRoute] Guid id)
+        {
+            try
+            {
+                var delete = await _context.UserOrders.FindAsync(id);
+                var result = _context.UserOrders.Remove(delete);
+                await _context.SaveChangesAsync();
+                return Ok();
             }
             catch
             {
