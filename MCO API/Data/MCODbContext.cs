@@ -262,121 +262,121 @@ namespace MCO_API.Data
                 new WalletsDatabaseModel()
                 {
                     walletID = Guid.Parse("6b024b88-ff19-4f84-9dd5-4b773a671e05"),
-                    walletUserID = Guid.Parse("2b536497-b4b2-4c0b-8bd3-721a62a6c53d"),
+                    walletOwnerID = Guid.Parse("2b536497-b4b2-4c0b-8bd3-721a62a6c53d"),
                     currencyOwned = 100,
                 },
                 new WalletsDatabaseModel()
                 {
                     walletID = Guid.Parse("13f9f80b-5e2d-4b11-b1d3-364b5f674e9d"),
-                    walletUserID = Guid.Parse("921f2f45-7360-4c9e-b7cb-af7d2b168e67"),
+                    walletOwnerID = Guid.Parse("921f2f45-7360-4c9e-b7cb-af7d2b168e67"),
                     currencyOwned = 200,
                 },
                 new WalletsDatabaseModel()
                 {
                     walletID = Guid.Parse("cfab0e4e-cff6-4c5f-bc91-d7ab5a29b800"),
-                    walletUserID = Guid.Parse("ee2e1814-2db3-4e29-b4c5-f5c69b24f6db"),
+                    walletOwnerID = Guid.Parse("ee2e1814-2db3-4e29-b4c5-f5c69b24f6db"),
                     currencyOwned = 300,
                 },
                 new WalletsDatabaseModel()
                 {
                     walletID = Guid.Parse("8b24e288-d5df-4d6c-ba34-68dfebb8f3d8"),
-                    walletUserID = Guid.Parse("1a0d6253-b9fd-463e-b9f1-c79c442dbd94"),
+                    walletOwnerID = Guid.Parse("1a0d6253-b9fd-463e-b9f1-c79c442dbd94"),
                     currencyOwned = 400,
                 },
                 new WalletsDatabaseModel()
                 {
                     walletID = Guid.Parse("6ff8c3a7-d7f4-4ba3-bd99-13b13b3a8e7d"),
-                    walletUserID = Guid.Parse("4b0e25cf-d151-49d1-b4ff-520e417ea0e2"),
+                    walletOwnerID = Guid.Parse("4b0e25cf-d151-49d1-b4ff-520e417ea0e2"),
                     currencyOwned = 100,
                 },
                 new WalletsDatabaseModel()
                 {
                     walletID = Guid.Parse("a1ae09e9-cc0e-4f38-9a24-95e3f9d6c71d"),
-                    walletUserID = Guid.Parse("8572e71e-3561-487d-8f12-432a3e1b6dbb"),
+                    walletOwnerID = Guid.Parse("8572e71e-3561-487d-8f12-432a3e1b6dbb"),
                     currencyOwned = 100,
                 },
                 new WalletsDatabaseModel()
                 {
                     walletID = Guid.Parse("7cf950a7-3b7c-4e6e-8c97-ee6b5fc1532d"),
-                    walletUserID = Guid.Parse("d4fd0f6e-69f4-43a1-98a5-d0cf2f85392f"),
+                    walletOwnerID = Guid.Parse("d4fd0f6e-69f4-43a1-98a5-d0cf2f85392f"),
                     currencyOwned = 100,
                 },
                 new WalletsDatabaseModel()
                 {
                     walletID = Guid.Parse("bfb75d15-0fb8-40cc-8407-47dc8a20d55b"),
-                    walletUserID = Guid.Parse("1e0ee16c-d78b-45a0-bb1e-9ab4a784b2f7"),
+                    walletOwnerID = Guid.Parse("1e0ee16c-d78b-45a0-bb1e-9ab4a784b2f7"),
                     currencyOwned = 100,
                 },
                 new WalletsDatabaseModel()
                 {
                     walletID = Guid.Parse("9298b63e-c117-480b-8d9e-5af67b91cf0b"),
-                    walletUserID = Guid.Parse("99a5c6fd-b832-4375-b5ac-5f78c3c895d2"),
+                    walletOwnerID = Guid.Parse("99a5c6fd-b832-4375-b5ac-5f78c3c895d2"),
                     currencyOwned = 200,
                 },
                 new WalletsDatabaseModel()
                 {
                     walletID = Guid.Parse("5645459f-6673-4bb5-93f3-cde981dd91e1"),
-                    walletUserID = Guid.Parse("faf9bc4b-f8ac-414d-8d1f-66fdd454d4a6"),
+                    walletOwnerID = Guid.Parse("faf9bc4b-f8ac-414d-8d1f-66fdd454d4a6"),
                     currencyOwned = 200,
                 },
                 new WalletsDatabaseModel()
                 {
                     walletID = Guid.Parse("d33db8f4-0c0d-4aa3-88e6-7f07d318c3eb"),
-                    walletCoachID = Guid.Parse("72c084fb-dc7b-4825-a720-7f60702cfbb7"),
+                    walletOwnerID = Guid.Parse("72c084fb-dc7b-4825-a720-7f60702cfbb7"),
                     currencyOwned = 200,
                 },
                 new WalletsDatabaseModel()
                 {
                     walletID = Guid.Parse("ef16936f-7467-49fd-9269-0e4d775d2b07"),
-                    walletCoachID = Guid.Parse("3a45f13f-b905-4e9d-8c18-b68f6653b141"),
+                    walletOwnerID = Guid.Parse("3a45f13f-b905-4e9d-8c18-b68f6653b141"),
                     currencyOwned = 200,
                 },
                 new WalletsDatabaseModel()
                 {
                     walletID = Guid.Parse("3122b812-b934-4e02-8827-cd8cf41e905f"),
-                    walletCoachID = Guid.Parse("9f54e945-d17c-43d5-8d1b-8837ac4a86d2"),
+                    walletOwnerID = Guid.Parse("9f54e945-d17c-43d5-8d1b-8837ac4a86d2"),
                     currencyOwned = 300,
                 },
                 new WalletsDatabaseModel()
                 {
                     walletID = Guid.Parse("1bca0053-4d8c-4b68-9e17-f4ee7a6dd06f"),
-                    walletCoachID = Guid.Parse("13db2917-dbc9-4eb8-8f3c-926ed41d747f"),
+                    walletOwnerID = Guid.Parse("13db2917-dbc9-4eb8-8f3c-926ed41d747f"),
                     currencyOwned = 300,
                 },
                 new WalletsDatabaseModel()
                 {
                     walletID = Guid.Parse("2d0c5297-6f7d-4492-8ac7-d0b35f982160"),
-                    walletCoachID = Guid.Parse("b4c87739-f2c0-4b08-a319-4fb45774b5e5"),
+                    walletOwnerID = Guid.Parse("b4c87739-f2c0-4b08-a319-4fb45774b5e5"),
                     currencyOwned = 300,
                 },
                 new WalletsDatabaseModel()
                 {
                     walletID = Guid.Parse("8e0a3bb7-ae7a-4624-91b7-ee83ab9e5ee8"),
-                    walletCoachID = Guid.Parse("6a00e27e-9a9a-499b-afe4-233bf52edf5a"),
+                    walletOwnerID = Guid.Parse("6a00e27e-9a9a-499b-afe4-233bf52edf5a"),
                     currencyOwned = 300,
                 },
                 new WalletsDatabaseModel()
                 {
                     walletID = Guid.Parse("ccf33a5b-44a6-484b-97d1-7e7b7dd230f6"),
-                    walletCoachID = Guid.Parse("8a5eb77e-4a36-4598-8a64-1f167b7af6cb"),
+                    walletOwnerID = Guid.Parse("8a5eb77e-4a36-4598-8a64-1f167b7af6cb"),
                     currencyOwned = 400,
                 },
                 new WalletsDatabaseModel()
                 {
                     walletID = Guid.Parse("d2d81b3d-5154-4394-ba45-2c0407f39e67"),
-                    walletCoachID = Guid.Parse("0d57e615-4c7b-4d6b-8b7c-9de18e3a8059"),
+                    walletOwnerID = Guid.Parse("0d57e615-4c7b-4d6b-8b7c-9de18e3a8059"),
                     currencyOwned = 400,
                 },
                 new WalletsDatabaseModel()
                 {
                     walletID = Guid.Parse("27b065a4-317e-47c8-97d4-c4c0d94921a4"),
-                    walletCoachID = Guid.Parse("11b83625-aa92-468b-bf1b-123f2051a01f"),
+                    walletOwnerID = Guid.Parse("11b83625-aa92-468b-bf1b-123f2051a01f"),
                     currencyOwned = 400,
                 },
                 new WalletsDatabaseModel()
                 {
                     walletID = Guid.Parse("84c484bf-cf95-4b20-b6ff-1c7b776bba09"),
-                    walletCoachID = Guid.Parse("ff6c13e2-ff58-40c3-b3ab-675f1c2dca32"),
+                    walletOwnerID = Guid.Parse("ff6c13e2-ff58-40c3-b3ab-675f1c2dca32"),
                     currencyOwned = 400,
                 },
             };

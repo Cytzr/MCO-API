@@ -100,6 +100,7 @@ namespace MCO_API.Controllers
             {
                 UserOrdersDatabaseModel result = await _context.UserOrders.FindAsync(id);
                 result.orderStatus = status;
+                await _context.SaveChangesAsync();
                 return Ok();
             }
             catch

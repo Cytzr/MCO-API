@@ -8,8 +8,7 @@ namespace MCO_API.Models.Database
     {
         [Key]
         public Guid walletID { get; set; }
-        public Guid? walletUserID { get; set; }
-        public Guid? walletCoachID { get; set; }
+        public Guid? walletOwnerID { get; set; }
         public int currencyOwned { get; set; }
     }
 }

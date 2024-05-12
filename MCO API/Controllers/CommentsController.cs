@@ -27,6 +27,8 @@ namespace MCO_API.Controllers
                                     where a.commentedUser == userID
                                     select new CommentsDatabaseModel
                                     {
+                                        commentID = a.commentID,
+                                        commentedUser = a.commentedUser,
                                         commentContent = a.commentContent,
                                         commentSender = a.commentSender,
                                         commentRating = a.commentRating,
@@ -38,7 +40,6 @@ namespace MCO_API.Controllers
             {
                 throw new Exception();
             }
-            
         }
 
         [HttpPost]

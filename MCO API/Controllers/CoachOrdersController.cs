@@ -32,6 +32,7 @@ namespace MCO_API.Controllers
                                        where a.customerID.Equals(id) && a.orderType.Equals("Coaching")
                                        select new CoachOrders
                                        {
+                                           orderID = a.orderID,
                                            customerID = a.customerID,
                                            sellerID = a.sellerID,
                                            orderType = a.orderType,
@@ -83,6 +84,7 @@ namespace MCO_API.Controllers
                                    where a.sellerID.Equals(id) && a.orderType.Equals("Coaching")
                                    select new CoachOrders
                                    {
+                                       orderID = a.orderID,
                                        customerID = a.customerID,
                                        sellerID = a.sellerID,
                                        orderType = a.orderType,
@@ -125,7 +127,8 @@ namespace MCO_API.Controllers
             {
                 CoachOrdersDatabaseModel result = await _context.CoachOrders.FindAsync(id);
                 result.orderStatus = status;
-                return Ok();
+                await _context.SaveChangesAsync();
+                return Ok(result);
             }
             catch
             {

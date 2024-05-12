@@ -68,33 +68,6 @@ namespace MCO_API.Controllers
         }
 
         [HttpGet]
-        [Route("/users/getUserByID/{id:guid}")]
-        public async Task<IActionResult> GetUserById([FromRoute] Guid id)
-        {
-            try
-            {
-                var result = await (from a in _context.Users
-                                    join b in _context.Games
-                                    on a.userGameID equals b.gameID
-                                    where a.userID == id
-                                    select new Users
-                                    {
-                                        userID = a.userID,
-                                        userName = a.userName,
-                                        userDescription = a.userDescription,
-                                        userPicture = a.userPicture,
-                                        userPrice = a.userPrice,
-                                        games = b
-                                    }).FirstOrDefaultAsync();
-                return Ok(result);
-            }
-            catch (Exception e)
-            {
-                return NotFound(e.Message);
-            }
-        }
-
-        [HttpGet]
         [Route("/users/getUserByGame/{gameID:guid}")]
         public async Task<List<Users>> GetUserByGame([FromRoute] Guid gameID)
         {
@@ -155,7 +128,7 @@ namespace MCO_API.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("/users/userLogin")]
         public async Task<UsersDatabaseModel> UserLogin([FromBody] UsersDatabaseModel user)
         {
@@ -164,7 +137,6 @@ namespace MCO_API.Controllers
                 var login = await (from a in _context.Users
                                    where a.userPassword.Equals(user.userPassword) && a.userName.Equals(user.userName)
                                    select a).FirstOrDefaultAsync();
-
                 return login;
             }
             catch

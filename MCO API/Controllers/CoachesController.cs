@@ -128,16 +128,15 @@ namespace MCO_API.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("/coaches/coachLogin")]
         public async Task<CoachesDatabaseModel> CoachLogin([FromBody] CoachesDatabaseModel coach)
         {
             try
             {
                 var login = await (from a in _context.Coaches
-                                   where a.coachPassword.Equals(coach.coachPassword) && a.coachName.Equals(coach.coachPassword)
+                                   where a.coachPassword.Equals(coach.coachPassword) && a.coachName.Equals(coach.coachName)
                                    select a).FirstOrDefaultAsync();
-
                 return login;
             }
             catch
