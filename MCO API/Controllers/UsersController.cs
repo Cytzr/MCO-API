@@ -155,6 +155,24 @@ namespace MCO_API.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("/users/userLogin")]
+        public async Task<UsersDatabaseModel> UserLogin([FromBody] UsersDatabaseModel user)
+        {
+            try
+            {
+                var login = await (from a in _context.Users
+                                   where a.userPassword.Equals(user.userPassword) && a.userName.Equals(user.userName)
+                                   select a).FirstOrDefaultAsync();
+
+                return login;
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+
         [HttpPost]
         [Route("/users/insertUser")]
         public async Task<IActionResult> InsertUser([FromBody] UsersDatabaseModel newUser)

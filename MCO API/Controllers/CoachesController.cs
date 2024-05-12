@@ -128,6 +128,24 @@ namespace MCO_API.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("/coaches/coachLogin")]
+        public async Task<CoachesDatabaseModel> CoachLogin([FromBody] CoachesDatabaseModel coach)
+        {
+            try
+            {
+                var login = await (from a in _context.Coaches
+                                   where a.coachPassword.Equals(coach.coachPassword) && a.coachName.Equals(coach.coachPassword)
+                                   select a).FirstOrDefaultAsync();
+
+                return login;
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+
         [HttpPost]
         [Route("/coaches/insertCoach")]
         public async Task<IActionResult> InsertCoach([FromBody] CoachesDatabaseModel newCoach)
