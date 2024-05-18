@@ -38,14 +38,14 @@ namespace MCO_API.Controllers
 
         [HttpPut]
         [Route("/wallets/purchaseService/{id:guid}")]
-        public async Task<IActionResult> PurchaseService([FromRoute] Guid id, [FromBody] int price)
+        public async Task<IActionResult> PurchaseService([FromRoute] Guid id, [FromBody] WalletUpdate update)
         {
             try
             {
                 var result = await (from a in _context.Wallets
                                     where a.walletOwnerID.Equals(id)
                                     select a).FirstOrDefaultAsync();
-                result.currencyOwned += price;
+                result.currencyOwned += update.value;
                 await _context.SaveChangesAsync();
                 return Ok();
             }

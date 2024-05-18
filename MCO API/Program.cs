@@ -4,27 +4,28 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 //for CORS
-//var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-//builder.Services.AddCors(options =>
-//{
-//    options.AddPolicy(name: MyAllowSpecificOrigins,
-//        policy =>
-//        {
-//            policy.WithOrigins("http://localhost/*", "https://localhost/*")
-//            .AllowAnyHeader()
-//            .AllowAnyMethod()
-//            .AllowAnyOrigin();
-//        });
-//});
-
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 builder.Services.AddCors(options =>
-        options.AddPolicy("AllowAll", builder =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+        policy =>
         {
-            builder.AllowAnyOrigin()
-                .AllowAnyHeader()
-                .AllowAnyMethod();
-        }
-));
+            policy.WithOrigins("http://localhost/*", "https://localhost/*")
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowAnyOrigin();
+        });
+});
+
+//builder.Services.AddCors(options =>
+//        options.AddPolicy("AllowAll", builder =>
+//        {
+//            builder.AllowAnyOrigin()
+//                .AllowAnyHeader()
+//                .AllowAnyMethod()
+//                .AllowCredentials();
+//        }
+//));
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -49,5 +50,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors(MyAllowSpecificOrigins);
 
 app.Run();

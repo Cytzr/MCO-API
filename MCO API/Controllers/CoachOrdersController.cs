@@ -121,12 +121,12 @@ namespace MCO_API.Controllers
 
         [HttpPut]
         [Route("/coachOrders/updateStatus/{id:guid}")]
-        public async Task<IActionResult> UpdateStatus([FromRoute] Guid id, [FromBody] String status)
+        public async Task<IActionResult> UpdateStatus([FromRoute] Guid id, [FromBody] OrderUpdate update)
         {
             try
             {
                 CoachOrdersDatabaseModel result = await _context.CoachOrders.FindAsync(id);
-                result.orderStatus = status;
+                result.orderStatus = update.update;
                 await _context.SaveChangesAsync();
                 return Ok(result);
             }
