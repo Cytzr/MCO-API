@@ -13,5 +13,6 @@ namespace MCO_API.Models.Database
         public String? orderType { get; set; }
         public String? orderStatus { get; set; }
         public int? orderPrice {  get; set; }
+        public int? orderRating { get; set; }
     }
 }

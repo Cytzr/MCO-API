@@ -136,6 +136,46 @@ namespace MCO_API.Controllers
             }
         }
 
+        [HttpPut]
+        [Route("/coachOrders/updateRating/")]
+        public async Task<IActionResult> UpdateRating([FromBody] Guid id, int rating)
+        {
+            try
+            {
+                CoachOrdersDatabaseModel result = await _context.CoachOrders.FindAsync(id);
+                result.orderRating = rating;
+                result.orderStatus = "Finished";
+                await _context.SaveChangesAsync();
+
+                List<CoachOrdersDatabaseModel> listCoach = await (from a in _context.CoachOrders
+                                                              where a.sellerID.Equals(result.sellerID)
+                                                              select a).ToListAsync();
+                int? total = 0;
+                int count = 0;
+                foreach(var item in listCoach)
+                {
+                    if(item.orderStatus == "Finished")
+                    {
+                        total += item.orderRating;
+                        count++;
+                    }
+                }
+                double? avg = total/count;
+
+                CoachesDatabaseModel coach = await (from a in _context.Coaches
+                                                    where a.coachID.Equals(listCoach[0].sellerID)
+                                                    select a).FirstOrDefaultAsync();
+                coach.coachRating = avg;
+                await _context.SaveChangesAsync();
+
+                return Ok();
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+
         [HttpPost]
         [Route("/coachOrders/insertOrder")]
         public async Task<IActionResult> InsertOrder([FromBody] CoachOrdersDatabaseModel order)

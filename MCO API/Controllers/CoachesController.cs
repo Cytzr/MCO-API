@@ -49,6 +49,7 @@ namespace MCO_API.Controllers
                                         coachDescription = a.coachDescription,
                                         coachPicture = a.coachPicture,
                                         coachPrice = a.coachPrice,
+                                        coachRating = a.coachRating,
                                         games = b,
                                     }).ToListAsync();
 
@@ -83,6 +84,7 @@ namespace MCO_API.Controllers
                                         coachDescription = a.coachDescription,
                                         coachPicture = a.coachPicture,
                                         coachPrice = a.coachPrice,
+                                        coachRating = a.coachRating,
                                         coachGameID = gameID,
                                         games = (from b in _context.Games
                                                  where b.gameID.Equals(gameID)
@@ -112,6 +114,7 @@ namespace MCO_API.Controllers
                                         coachDescription = a.coachDescription,
                                         coachPicture = a.coachPicture,
                                         coachPrice = a.coachPrice,
+                                        coachRating = a.coachRating,
                                         coachGameID = a.coachGameID,
                                         games = (from b in _context.Games
                                                  where b.gameID.Equals(a.coachGameID)

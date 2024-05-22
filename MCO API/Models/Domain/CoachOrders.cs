@@ -12,6 +12,7 @@ namespace MCO_API.Models.Domain
         public String? orderType { get; set; }
         public String? orderStatus { get; set; }
         public int? orderPrice { get; set; }
+        public int? orderRating { get; set; }
 
         //Navigation Properties
         public UsersDatabaseModel? users { get; set; }

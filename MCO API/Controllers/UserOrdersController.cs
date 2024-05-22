@@ -4,6 +4,7 @@ using MCO_API.Models.Domain;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace MCO_API.Controllers
 {
@@ -101,6 +102,46 @@ namespace MCO_API.Controllers
                 UserOrdersDatabaseModel result = await _context.UserOrders.FindAsync(id);
                 result.orderStatus = update.update;
                 await _context.SaveChangesAsync();
+                return Ok();
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+
+        [HttpPut]
+        [Route("/userOrders/updateRating/")]
+        public async Task<IActionResult> UpdateRating([FromBody] Guid id, int rating)
+        {
+            try
+            {
+                UserOrdersDatabaseModel result = await _context.UserOrders.FindAsync(id);
+                result.orderRating = rating;
+                result.orderStatus = "Finished";
+                await _context.SaveChangesAsync();
+
+                List<UserOrdersDatabaseModel> listCoach = await (from a in _context.UserOrders
+                                                                  where a.sellerID.Equals(result.sellerID)
+                                                                  select a).ToListAsync();
+                int? total = 0;
+                int count = 0;
+                foreach (var item in listCoach)
+                {
+                    if (item.orderStatus == "Finished")
+                    {
+                        total += item.orderRating;
+                        count++;
+                    }
+                }
+                double? avg = total / count;
+
+                UsersDatabaseModel coach = await (from a in _context.Users
+                                                    where a.userID.Equals(listCoach[0].sellerID)
+                                                    select a).FirstOrDefaultAsync();
+                coach.userRating = avg;
+                await _context.SaveChangesAsync();
+
                 return Ok();
             }
             catch

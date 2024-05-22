@@ -11,6 +11,7 @@ namespace MCO_API.Models.Database
         public string? userName { get; set; }
         public string? userPassword { get; set; }
         public string? userDescription { get; set; }
+        public double? userRating { get; set; }
         public string? userPicture { get; set; }
         public Boolean? userIsPlayer { get; set; }
         public int? userPrice { get; set; }

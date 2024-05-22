@@ -49,6 +49,7 @@ namespace MCO_API.Controllers
                                         userDescription = a.userDescription,
                                         userPicture = a.userPicture,
                                         userPrice = a.userPrice,
+                                        userRating = a.userRating,
                                         games = b,
                                     }).ToListAsync();
 
@@ -84,6 +85,7 @@ namespace MCO_API.Controllers
                                         userID = a.userID,
                                         userName = a.userName,
                                         userDescription = a.userDescription,
+                                        userRating = a.userRating,
                                         userPicture = a.userPicture,
                                         userIsPlayer = a.userIsPlayer,
                                         userPrice = a.userPrice,
@@ -112,6 +114,7 @@ namespace MCO_API.Controllers
                                         userID = a.userID,
                                         userName = a.userName,
                                         userDescription = a.userDescription,
+                                        userRating = a.userRating,
                                         userPicture = a.userPicture,
                                         userIsPlayer = a.userIsPlayer,
                                         userPrice = a.userPrice,
