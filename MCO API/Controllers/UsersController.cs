@@ -133,13 +133,28 @@ namespace MCO_API.Controllers
 
         [HttpPost]
         [Route("/users/userLogin")]
-        public async Task<UsersDatabaseModel> UserLogin([FromBody] UsersDatabaseModel user)
+        public async Task<Users> UserLogin([FromBody] UsersDatabaseModel user)
         {
             try
             {
-                var login = await (from a in _context.Users
-                                   where a.userPassword.Equals(user.userPassword) && a.userName.Equals(user.userName)
-                                   select a).FirstOrDefaultAsync();
+                Users login = await (from a in _context.Users
+                                     where a.userPassword.Equals(user.userPassword) && a.userName.Equals(user.userName)
+                                     select new Users()
+                                     {
+                                         userID = a.userID,
+                                         userName = a.userName,
+                                         userPassword = a.userPassword,
+                                         userDescription = a.userDescription,
+                                         userRating = a.userRating,
+                                         userPicture = a.userPicture,
+                                         userIsPlayer = a.userIsPlayer,
+                                         userPrice = a.userPrice,
+                                         userGameID = a.userGameID,
+                                         wallets = (from b in _context.Wallets
+                                                    where b.walletOwnerID == a.userID
+                                                    select b).FirstOrDefault(),
+                                     }).FirstOrDefaultAsync();
+
                 return login;
             }
             catch
@@ -156,6 +171,19 @@ namespace MCO_API.Controllers
             {
                 await _context.Users.AddAsync(newUser);
                 await _context.SaveChangesAsync();
+
+                UsersDatabaseModel tempUser = (from a in _context.Users
+                                           where newUser.userName == a.userName
+                                           select a).FirstOrDefault();
+
+                WalletsDatabaseModel tempWallet = new WalletsDatabaseModel();
+
+                tempWallet.walletOwnerID = newUser.userID;
+                tempWallet.currencyOwned = 0;
+
+                await _context.Wallets.AddAsync(tempWallet);
+                await _context.SaveChangesAsync();
+
                 return Ok();
             }
             catch
