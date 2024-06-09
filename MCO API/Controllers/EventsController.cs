@@ -32,6 +32,32 @@ namespace MCO_API.Controllers
         }
 
         [HttpGet]
+        [Route("/events/getSampleEvents")]
+        public async Task<List<EventsDatabaseModel>> GetSampleEvents()
+        {
+            try
+            {
+                var result = await (from a in _context.Events
+                                    select a).ToListAsync();
+
+                List<EventsDatabaseModel> temp = new List<EventsDatabaseModel>();
+
+                foreach (var e in result)
+                {
+                    if(temp.Count < 3)
+                    {
+                        temp.Add(e); 
+                    }
+                }
+                return temp;
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+
+        [HttpGet]
         [Route("/events/getEventByGame/{gameID:guid}")]
         public async Task<List<EventsDatabaseModel>> GetEventByGame([FromRoute] Guid gameID)
         {

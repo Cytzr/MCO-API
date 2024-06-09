@@ -434,8 +434,9 @@ namespace MCO_API.Data
                     commentContent = "Playing with him has been a blast! They're always up for a challenge and bring a lot of energy to our gaming sessions. However, there have been times when they get a bit too competitive, which can create tension and detract from the overall fun",
                     commentSender = "Cytzr",
                     commentRating = 5,
-                    commentPicture = "",
-                    commentType = "User"
+                    commentPicture = "https://www.fakepersongenerator.com/Face/male/male20171084078698944.jpg",
+                    commentType = "User",
+                    commentTime = "06-09-2024"
                 },
                 new CommentsDatabaseModel()
                 {
@@ -444,8 +445,9 @@ namespace MCO_API.Data
                     commentContent = "He is incredibly skilled and has helped me improve a lot in the games we play together. They're also very reliable and always show up on time for our sessions. However, there are occasions when they're not very communicative, which can make coordinating strategies difficult.",
                     commentSender = "Archz",
                     commentRating = 2,
-                    commentPicture = "",
-                    commentType = "User"
+                    commentPicture = "https://www.fakepersongenerator.com/Face/male/male1085243424652.jpg",
+                    commentType = "User",
+                    commentTime = "05-09-2024",
                 },
                 new CommentsDatabaseModel()
                 {
@@ -454,8 +456,9 @@ namespace MCO_API.Data
                     commentContent = "I enjoy gaming with him most of the time. They have a great sense of humor and make our gaming sessions enjoyable. However, there are times when they become overly focused on winning, which can take away from the casual and laid-back atmosphere I prefer during gaming",
                     commentSender = "Sguishs",
                     commentRating = 5,
-                    commentPicture = "",
-                    commentType = "User"
+                    commentPicture = "https://www.fakepersongenerator.com/Face/male/male20161085956397827.jpg",
+                    commentType = "User",
+                    commentTime = "04-09-2024",
                 },
                 new CommentsDatabaseModel()
                 {
@@ -464,8 +467,9 @@ namespace MCO_API.Data
                     commentContent = "I had high expectations when hiring the gaming coach, but unfortunately, I was left disappointed. While the coach had good intentions, their teaching style didn't resonate with me, and I didn't see much improvement in my gameplay. Additionally, there were frequent technical issues during online sessions, which disrupted the learning process.",
                     commentSender = "Cytzr",
                     commentRating = 1,
-                    commentPicture = "",
-                    commentType = "Coach"
+                    commentPicture = "https://www.fakepersongenerator.com/Face/male/male20171084078698944.jpg",
+                    commentType = "Coach",
+                    commentTime = "03-09-2024",
                 },
                 new CommentsDatabaseModel()
                 {
@@ -474,8 +478,9 @@ namespace MCO_API.Data
                     commentContent = "The gaming coach was friendly and supportive, creating a comfortable learning environment. However, I felt that the coaching sessions were a bit rushed, and there wasn't enough time to delve deep into advanced strategies.",
                     commentSender = "Archz",
                     commentRating = 4,
-                    commentPicture = "",
-                    commentType = "Coach"
+                    commentPicture = "https://www.fakepersongenerator.com/Face/male/male1085243424652.jpg",
+                    commentType = "Coach",
+                    commentTime = "02-09-2024",
                 },
                 new CommentsDatabaseModel()
                 {
@@ -484,8 +489,9 @@ namespace MCO_API.Data
                     commentContent = "The gaming coach was very patient and understanding, especially when I struggled with certain techniques.",
                     commentSender = "Sguishs",
                     commentRating = 5,
-                    commentPicture = "",
-                    commentType = "Coach"
+                    commentPicture = "https://www.fakepersongenerator.com/Face/male/male20161085956397827.jpg",
+                    commentType = "Coach",
+                    commentTime = "01-09-2024",
                 },
             };
             modelBuilder.Entity<CommentsDatabaseModel>().HasData(Comments);

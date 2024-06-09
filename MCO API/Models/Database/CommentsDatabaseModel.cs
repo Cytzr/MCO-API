@@ -14,5 +14,6 @@ namespace MCO_API.Models.Database
         public int? commentRating { get; set; }
         public string? commentPicture { get; set; }
         public string? commentType { get; set; }
+        public string? commentTime { get; set; }
     }
 }

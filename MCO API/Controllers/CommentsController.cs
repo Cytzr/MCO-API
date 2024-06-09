@@ -33,6 +33,8 @@ namespace MCO_API.Controllers
                                         commentSender = a.commentSender,
                                         commentRating = a.commentRating,
                                         commentPicture = a.commentPicture,
+                                        commentTime = a.commentTime,
+                                        commentType = a.commentType,
                                     }).ToListAsync();
                 return result;
             }
@@ -48,6 +50,7 @@ namespace MCO_API.Controllers
         {
             try
             {
+                comment.commentTime = DateTime.Now.ToString("MM-dd-yyyy");
                 var result = await _context.Comments.AddAsync(comment);
                 await _context.SaveChangesAsync();
                 return Ok();
