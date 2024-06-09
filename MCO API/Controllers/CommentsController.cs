@@ -44,6 +44,44 @@ namespace MCO_API.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("/comments/getSampleComments")]
+        public async Task<List<CommentsDatabaseModel>> GetSampleComments()
+        {
+            try
+            {
+                var result = await (from a in _context.Comments
+                                    select new CommentsDatabaseModel
+                                    {
+                                        commentID = a.commentID,
+                                        commentedUser = a.commentedUser,
+                                        commentContent = a.commentContent,
+                                        commentSender = a.commentSender,
+                                        commentRating = a.commentRating,
+                                        commentPicture = a.commentPicture,
+                                        commentTime = a.commentTime,
+                                        commentType = a.commentType,
+                                    }).ToListAsync();
+
+                List<CommentsDatabaseModel> temp = new List<CommentsDatabaseModel>();
+
+                foreach (var comment in result)
+                {
+                    if(temp.Count >= 6)
+                    {
+                        break;
+                    }
+                    temp.Add(comment);
+                }
+
+                return temp;
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+
         [HttpPost]
         [Route("/comments/insertComment")]
         public async Task<IActionResult> InsertComment([FromBody] CommentsDatabaseModel comment)

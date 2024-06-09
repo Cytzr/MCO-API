@@ -32,6 +32,23 @@ namespace MCO_API.Controllers
         }
 
         [HttpGet]
+        [Route("/events/getEventByID/{id:guid}")]
+        public async Task<List<EventsDatabaseModel>> GetAllEvents([FromRoute] Guid id)
+        {
+            try
+            {
+                var result = await (from a in _context.Events
+                                    where a.eventID == id
+                                    select a).ToListAsync();
+                return result;
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+
+        [HttpGet]
         [Route("/events/getSampleEvents")]
         public async Task<List<EventsDatabaseModel>> GetSampleEvents()
         {

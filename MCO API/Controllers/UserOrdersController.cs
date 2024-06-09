@@ -42,6 +42,7 @@ namespace MCO_API.Controllers
                                                     userID = b.userID,
                                                     userName = b.userName,
                                                     userPicture = b.userPicture,
+                                                    userPrice = b.userPrice,
                                                 }).FirstOrDefault(),
                                        seller = (from b in _context.Users
                                                  where b.userID.Equals(a.sellerID)
@@ -50,6 +51,7 @@ namespace MCO_API.Controllers
                                                      userID=b.userID,
                                                      userName = b.userName,
                                                      userPicture = b.userPicture,
+                                                     userPrice = b.userPrice,
                                                  }).FirstOrDefault(),
                                    }).ToListAsync();
                 list.AddRange(buyer);
