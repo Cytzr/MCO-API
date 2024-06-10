@@ -109,6 +109,7 @@ namespace MCO_API.Controllers
             {
 
                 var result = await (from a in _context.Users
+                                    where a.userID.Equals(id)
                                     select new Users
                                     {
                                         userID = a.userID,

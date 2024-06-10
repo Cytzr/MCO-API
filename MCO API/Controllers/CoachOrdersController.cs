@@ -137,8 +137,8 @@ namespace MCO_API.Controllers
         }
 
         [HttpPut]
-        [Route("/coachOrders/updateRating/")]
-        public async Task<IActionResult> UpdateRating([FromBody] Guid id, int rating)
+        [Route("/coachOrders/updateRating/{id:guid}")]
+        public async Task<IActionResult> UpdateRating([FromRoute] Guid id, int rating)
         {
             try
             {
