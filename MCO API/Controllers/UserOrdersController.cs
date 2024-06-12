@@ -19,6 +19,20 @@ namespace MCO_API.Controllers
         }
 
         [HttpGet]
+        [Route("/userOrders/getAllUserOrder")]
+        public async Task<List<UserOrdersDatabaseModel>> GetAllUserOrder()
+        {
+            try
+            {
+                return await _context.UserOrders.ToListAsync();
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+
+        [HttpGet]
         [Route("/userOrders/getOrderByUserID/{id:guid}")]
         public async Task<List<UserOrders>> GetOrderByUserID([FromRoute] Guid id)
         {
@@ -114,12 +128,12 @@ namespace MCO_API.Controllers
 
         [HttpPut]
         [Route("/userOrders/updateRating/{id:guid}")]
-        public async Task<IActionResult> UpdateRating([FromRoute] Guid id, int rating)
+        public async Task<IActionResult> UpdateRating([FromRoute] Guid id, [FromBody] OrderRate rating)
         {
             try
             {
                 UserOrdersDatabaseModel result = await _context.UserOrders.FindAsync(id);
-                result.orderRating = rating;
+                result.orderRating = rating.rating;
                 result.orderStatus = "Finished";
                 await _context.SaveChangesAsync();
 

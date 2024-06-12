@@ -18,6 +18,20 @@ namespace MCO_API.Controllers
         }
 
         [HttpGet]
+        [Route("/comments/getAllComments")]
+        public async Task<List<CommentsDatabaseModel>> GetAllComments()
+        {
+            try
+            {
+                return await _context.Comments.ToListAsync();
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+
+        [HttpGet]
         [Route("/comments/getComments/{userID:guid}")]
         public async Task<List<CommentsDatabaseModel>> GetUserComments([FromRoute] Guid userID)
         {

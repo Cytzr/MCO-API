@@ -19,6 +19,20 @@ namespace MCO_API.Controllers
         }
 
         [HttpGet]
+        [Route("/coachOrders/getAllCoachOrders")]
+        public async Task<List<CoachOrdersDatabaseModel>> GetAllCoachOrders()
+        {
+            try
+            {
+                return await _context.CoachOrders.ToListAsync();
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+
+        [HttpGet]
         [Route("/coachOrders/getOrderByUserID/{id:guid}")]
         public async Task<List<CoachOrders>> GetOrderByUserID([FromRoute] Guid id)
         {
@@ -138,12 +152,12 @@ namespace MCO_API.Controllers
 
         [HttpPut]
         [Route("/coachOrders/updateRating/{id:guid}")]
-        public async Task<IActionResult> UpdateRating([FromRoute] Guid id, int rating)
+        public async Task<IActionResult> UpdateRating([FromRoute] Guid id, [FromBody] OrderRate rating)
         {
             try
             {
                 CoachOrdersDatabaseModel result = await _context.CoachOrders.FindAsync(id);
-                result.orderRating = rating;
+                result.orderRating = rating.rating;
                 result.orderStatus = "Finished";
                 await _context.SaveChangesAsync();
 

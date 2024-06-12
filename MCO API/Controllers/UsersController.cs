@@ -193,14 +193,22 @@ namespace MCO_API.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("/users/updateUser")]
         public async Task<IActionResult> UpdateUser([FromBody] UsersDatabaseModel updateUser)
         {
             try
             {
-                var result = await _context.Users.FindAsync(updateUser.userID);
-                result = updateUser;
+                UsersDatabaseModel result = await (from a in _context.Users
+                                    where a.userID == updateUser.userID
+                                    select a).FirstOrDefaultAsync();
+                result.userName = updateUser.userName;
+                result.userPassword = updateUser.userPassword;
+                result.userDescription = updateUser.userDescription;
+                result.userPicture = updateUser.userPicture;
+                result.userIsPlayer = updateUser.userIsPlayer;
+                result.userPrice = updateUser.userPrice;
+                result.userGameID = updateUser.userGameID;
                 await _context.SaveChangesAsync();
                 return Ok();
             }
